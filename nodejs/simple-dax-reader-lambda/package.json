@@ -1,0 +1,10 @@
+{
+  "name": "simple-dax-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "author": "brian chan",
+  "license": "ISC",
+  "dependencies": {
+    "amazon-dax-client": "^1.2.5"
+  }
+}

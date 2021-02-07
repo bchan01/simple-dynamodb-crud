@@ -1,1 +1,3 @@
-# simple-dynamodb-crud
+## Simple DynamoDB CRUD Operations ##
+
+WORK IN PROGRESS ... WILL ADD MORE LANGUAGES
