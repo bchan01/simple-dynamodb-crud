@@ -8,8 +8,8 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 var table = "Movies";
 
-var year = 2015;
-var title = "The Big New Movie";
+var year = 2012;
+var title = "The Avengers";
 
 var params = {
     TableName: table,

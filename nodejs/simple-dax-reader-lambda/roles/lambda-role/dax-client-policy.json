@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [{
+            "Action": [
+                "dax:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:dax:us-east-1:160165339582:cache/my-dax-cluster-east"
+            ]
+        },
+        {
+            "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetItem",
+                "dynamodb:Query",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DescribeLimits",
+                "dynamodb:DescribeTimeToLive",
+                "dynamodb:DescribeTable",
+                "dynamodb:ListTables"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:dynamodb:us-east-1:160165339582:table/Movies"
+            ]
+        }
+    ]
+}

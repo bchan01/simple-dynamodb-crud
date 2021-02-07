@@ -5,6 +5,7 @@
   "author": "brian chan",
   "license": "ISC",
   "dependencies": {
-    "amazon-dax-client": "^1.2.5"
+    "amazon-dax-client": "^1.2.5",
+    "aws-sdk": "^2.839.0"
   }
 }

@@ -1,10 +1,15 @@
 const AmazonDaxClient = require('amazon-dax-client');
 var AWS = require("aws-sdk");
 
-// let ddbClient = new AWS.DynamoDB.DocumentClient()
+const region = 'us-east-1';
+AWS.config.update({
+  region: region
+});
+
 const dax_cluster = process.env.DAX_CLUSTER;
-let dax = new AmazonDaxClient({endpoints: [dax_cluster], region: 'us-east-1'})
-const client = new AWS.DynamoDB.DocumentClient({service: dax });
+let dax = new AmazonDaxClient({endpoints: [dax_cluster], region: region})
+const daxClient = new AWS.DynamoDB.DocumentClient({service: dax });
+const ddbClient = new AWS.DynamoDB.DocumentClient();
 
 const get_item = (client, params) => {
     return new Promise(function (resolve, reject) {
@@ -17,7 +22,10 @@ const get_item = (client, params) => {
         });
     })
 }
-
+/**
+ * 
+ * @param {*} event (year, title, dax: true|false)
+ */
 exports.handler = async (event) => {
     const params = {
         TableName: "Movies",
@@ -27,7 +35,15 @@ exports.handler = async (event) => {
         }   
     };
     const startTime = new Date().getTime();
-    const res = await get_item(client, params);
+    let dataClient = ddbClient;
+    if (event['dax'] === true) {
+        console.log('CONNECT TO DAX');
+        dataClient = daxClient;
+    } else {
+        console.log('CONNECT TO DDB');
+        dataClient = ddbClient;
+    }
+    const res = await get_item(dataClient, params);
     const endTime = new Date().getTime();
     console.log(`Search: ${JSON.stringify(event, null, 4)}`);
     console.log(`Result: ${JSON.stringify(res, null, 4)}`);
